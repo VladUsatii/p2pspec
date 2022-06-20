@@ -8,7 +8,7 @@ User transition states use the following representations as symbols:
 src:				source device
 dest:				destination device
 node -> n:			a device returning its state on the network n
-udp:				user datagram protocol returns unverified buffers over a port. This "unsafe" protocol is considered low-latency.
+tcp:				transmission control protocol returns verified buffers over a port. This "safe" protocol is considered high-latency.
 dhke(x) -> n:		diffie-hellman key exchange returns the secret number for transport protocol encryption and decryption
 ecdsa(x) -> bytes:	returns ecdsa signature of a private key in bytes
 sha256(x) -> y:		returns sha256-keccak hash on the input x
@@ -18,7 +18,7 @@ sha256(x) -> y:		returns sha256-keccak hash on the input x
 
 I've designated port 1513 as the mainnet, allowing all communications concerning finding local nodes and updating user state to be transacted through this port. Test ports are ignored for this representation (testnets). The port is opened upon running the mainnet.
 
-To scan the port for possible nodes on the network, pings are first run on the local network. If no devices are found listening on the port (localNode iterator returns False), the ```findLocalNodes()``` function switches to a ```findRemoteNodes()``` function. Finding local nodes requires the use of iterating the arp table. Finding remote nodes is a very difficult problem, on the other hand. Our solution involves DNS seeders. These expose a list of reliable nodes via a built-in DNS server on the network end-devices. This reduces electric fees significantly.
+To scan the port for possible nodes on the network, pings are first run on the local network. If no devices are found listening on the port (localNode iterator returns False), the ```findLocalNodes()``` function switches to a ```findRemoteNodes()``` function. Finding local nodes requires the use of iterating the arp table. Finding remote nodes is a very difficult problem, on the other hand. Our solution involves DNS seeders. These expose a list of reliable nodes via a built-in DNS server on the network end-devices. This reduces electric fees significantly. There are also bootstrap nodes, which are hard-coded DNS-seed-based nodes that are "the most reliable nodes on the network."
 
 ### Key exchange
 
@@ -71,8 +71,5 @@ masked-header	= aes(dhke(x), initvector, header)
 masked-key		= dest-name # dest-id[:16]
 ```
 
-The header is defined as the following:
+The header is defined as either a ```Hello``` or ```Bye```. Hello persists the communication using sub-opcodes and capability specification. Bye disconnects a user with a grace period (fighting chance to disconnect before an error is thrown).
 
-```
-unknown at the moment, in RD
-```

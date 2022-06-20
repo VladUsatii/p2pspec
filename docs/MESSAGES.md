@@ -1,4 +1,4 @@
-# Errors
+# Messages
 
 ## Overview
 

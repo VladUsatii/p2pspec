@@ -4,8 +4,7 @@ GIP 0 details are below. Please assume changes at any point; any pushes to the G
 
 # ```ConstructBlockHeader()```
 
-Every block, when stored, is 176 bytes, except for the genesis block which sits at a 332 byte limit.
-A constructed block header looks like the following (```||``` symbol represents string concatenation):
+Every block header, when stored, is currently 352 bytes, or 704 characters. A constructed block header looks like the following (```||``` symbol represents string concatenation):
 
 ```version || previous_hash || mix_hash || timestamp || targetEncoded || nonce || num || txHash || uncleRoot```
 
@@ -19,7 +18,7 @@ int(20 * e**GIP#)
 
 ### Previous Hash
 
-A previous hash is the double SHA256 hash of the parent block header. This is used in the mining process to validate that a nonce yields below the target value of the encoded difficulty.
+A previous hash is the double SHA256 hash of the parent block header. This is used in the mining process to validate that a nonce yields below the target value of the encoded difficulty. Double SHA256 is very useful, as it creates a fixed padding for every hash and removes arbitrary byte lengths.
 
 ### Mix Hash
 
@@ -27,7 +26,9 @@ A mix hash is the double SHA256 hash of the child block header (the newest block
 
 ### Timestamp
 
-The UTC timestamp rounded to the nearest int.
+The UTC timestamp rounded to the nearest int. It is stored as an 8 byte timestamp.
+
+NOTE: Timestamps in block headers and timestamps in account sharding determinants are two COMPLETELY different things. To see information on sharding, see the sharding folder in the parent directory.
 
 ### Target Encoded
 
@@ -55,7 +56,7 @@ The nonce is the "number only used once." This is the 4-byte digit that is used 
 
 ### Num
 
-The num is the block number. This is a fundamental property of the blockchain.
+The num is the block number. This is a fundamental property of the blockchain. This number is used most often to test block proposals. Discarded blocks are most easily discarded by reading the block number first.
 
 ### txHash
 
@@ -81,3 +82,28 @@ A deconstructed block header dictionary is structured in the following:
 "uncleRoot"    : uncleRoot     char[32 bytes]
 }
 ```
+
+# ```DeconstructBlockHeader()```
+
+
+
+# Downloading the chain
+
+To dowwnload only block headers, use a light node client. The projected change in allocation of storage on a machine will change based on the amount of blocks.
+
+```
+| Number of blocks     | Storage Space Allocated |
+| -------------------- | ----------------------- |
+| 0 <= x <= 100        | 40 KB                   |
+| 101 <= x <= 1000     | 4 MB                    |
+| 1001 <= x <= 10000   | 35 MB                   |
+| 10001 <= x <= 100000 | 250 MB (pruning)        |
+```
+
+As you can see, a light node requires anywhere from 40 KB of storage (plus a required 250 MB free on the machine), all the way up to 250 MB + 250 MB. At the moment, we require 40 KB, but you may continue to run a light node and ignore the recommendations above. See LICENSE for information on liability.
+
+# 
+
+
+```
+

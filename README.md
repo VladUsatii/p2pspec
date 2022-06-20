@@ -26,6 +26,10 @@ As of right now, this is the tree layout of the spec folder titled "docs":
 2 directories, 10 files
 ```
 
-### TODO:
+### Navigation
 
-Write a formal specification for the wire protocol. Right now, we have two different types of wire protocols and it is hard to program without picking the best alternative.
+To navigate and understand Gemcoin from first principles, we recommend reading the ```blog```. The blog is the collection of updates to the project in order and serve as a "first-principles" repository of changes to the protocol over time. To get an in-depth analysis of the peer-to-peer protocol, the connection "rules," or how blocks, transactions, or headers are packaged and distributed, please consult the blocks folder. In terms of undestanding the rules of the blocks, we recommend reading the "header.md" file first, and then moving on to the blocks.md, and finally the transaction structure/resolution methods.
+
+### HELP
+
+We are actively looking for documentation editors. Please feel free to reach out or contribute.
