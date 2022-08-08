@@ -96,6 +96,14 @@ To add the transaction to the Gemcoin Omniscient Network Explorer (GONE), naviga
 
 **EDIT: We will streamline this process in the near future.**
 
+### Alternate Method to Sending Proposals to Nodes
+
+In ```peers```, you can also use the ```sendingData.py``` file to add a file to send to nodes. Run it through:
+
+```
+chmod +x sendingData.py
+./sendingData.py
+```
 
 ----
 
