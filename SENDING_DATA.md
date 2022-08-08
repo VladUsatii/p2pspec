@@ -2,6 +2,12 @@
 
 This article explains to how to send data to a peer.
 
+## ⚠️  READ BEFORE FOLLOWING TUTORIAL
+
+* Transaction can be created at ```gemcoin/core/makeTransaction.py```. DO NOT PACK TRANSACTION INTO Hello(0x..). This will be handled by the client! If you do this, your data will be nullified by the peers and you may be blocked.
+* Blocks can be mined at ```memory/mining.py```. They are saved as ```saved_block_{blocknum}```. Copy the file contents and use for your block proposal.
+* Subprotocol transactions must be coordinated through external governance criteria. These protocols aren't created by Gemcoin and we are not liable for any damage done to your node.
+
 ## Transactions
 
 Using ```peers/sendingData.py```, you will be prompted to enter whether you want to send a transaction, a block, or a subprotocol transaction. If you enter ```1```, you are going to be asked to paste a raw transaction before the serialization/protocol encapsulation.
