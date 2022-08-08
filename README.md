@@ -10,20 +10,22 @@ As of right now, this is the tree layout of the spec folder titled "docs":
 
 ```
 .
-├── ERRORS.md
-├── FEE.md
-├── GIP1.md
-├── PEERS.md
-├── PERSISTENCE.md
-├── WIREPROTOCOL.md
-├── blocks
-│   └── HEADER.md
-├── blog
-│   ├── december2021.md
-│   └── january2021.md
-└── electricityFormalSpec.png
+└── docs
+    ├── FEE.md
+    ├── MESSAGES.md
+    ├── PEERS.md
+    ├── PERSISTENCE.md
+    ├── WIREPROTOCOL.md
+    ├── blocks
+    │   └── HEADER.md
+    ├── blog
+    │   ├── august2022.md
+    │   ├── december2021.md
+    │   └── january2022.md
+    └── electricityFormalSpec.png
 
 2 directories, 10 files
+
 ```
 
 ### Navigation
