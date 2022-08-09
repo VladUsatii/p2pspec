@@ -39,9 +39,7 @@ Round 10: 5**10 (9765625) nodes
 
 ## Proposed Blocks
 
-Let's say you just finished mining a block in ```memory/mining.py``` and you saved your packed block to a file.
-
-Copy the file contents, go to the prompt and enter ```2```, then paste the block contents. It will be very large. Press enter. You will then send your block to nodes at some speed x < speed(tx) because it will only be sent to fullnodes.
+Let's say you just finished mining a block in ```memory/mining.py``` and you saved your packed block to a file. Your filename has a timestamp appended to it. When you run ```./peers/sendingData.py``` and type in ```2```, Gemcoin will look at the block you've mined most recently based on the timestamp. This the block that will be proposed to the nodes.
 
 ## Subprotocol Transactions
 
